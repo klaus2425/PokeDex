@@ -1,5 +1,6 @@
 import ReactSelect, { StylesConfig } from "react-select";
 import Navbar from "../Components/Navbar";
+import AllPokemon from "../Components/AllPokemon";
 
 type CustomStyle = StylesConfig<{ value: string; label: string }, false>;
 
@@ -20,12 +21,15 @@ const Home = () => {
       color: state.isSelected ? 'white' : 'black', 
     }),
   };
+
+
+
   return (
-    <div className="flex flex-col gap-2 items-center">
+    <div className="flex flex-col gap-4 items-center">
       <Navbar />
-      <div className="text-4xl font-bold">Pokémon</div>
+      <div className="text-4xl mt-4 font-bold">Pokémon</div>
       <div className="w-3/12 min-w-72 flex items-center gap-1">
-        <input className="rounded px-1 p-0.5 w-full border-2 outline-gray-500" type="text" placeholder="Search Pokémons" />
+        <input className="rounded px-1 p-0.5 w-full border-2 outline-gray-500" type="text" placeholder="Search Pokémon" />
         🔍
       </div>
       <div className="flex justify-center items-center gap-3">
@@ -35,9 +39,11 @@ const Home = () => {
             options={options}
             styles={customStyles}
             defaultValue={{ value: 'name', label: 'Name' }}
+            isSearchable={false}
             />
         </div>
       </div>
+      <AllPokemon searchKey={''}/>
     </div>
   )
 }
