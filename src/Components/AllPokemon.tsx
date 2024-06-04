@@ -42,7 +42,7 @@ const AllPokemon = ({ searchKey, sortType, order }: AllPokemonProps) => {
   const filteredResults = searchKey
     ? sortedResults.filter((pokemon: Pokemon) => {
         const id = getPokemonId(pokemon.url);
-        return pokemon.name.toLowerCase().includes(searchKey.toLowerCase()) || id === searchKey;
+        return pokemon.name.toLowerCase().includes(searchKey.toLowerCase()) || id === searchKey || id.padStart(3, '0') === searchKey;
       })
     : sortedResults;
 
@@ -58,7 +58,7 @@ const AllPokemon = ({ searchKey, sortType, order }: AllPokemonProps) => {
               className="group border-4 border-black flex flex-col relative h-64 bg-gray-100 rounded-md items-center 
               justify-between cursor-pointer transition duration-200 hover:bg-slate-400"
             >
-              <span className="mt-1 ml-1 rounded-2xl px-1 bg-red-500 font-bold self-start text-white border-2 border-black">No. {id}</span>
+              <span className="mt-1 ml-1 rounded-2xl px-1 bg-red-500 font-bold self-start text-white border-2 border-black">#{id.padStart(3,'0')}</span>
               <img
                 className="w-40 h-40 object-cover transition-transform duration-300 transform scale-100 group-hover:scale-125 absolute top-7 left-auto"
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}

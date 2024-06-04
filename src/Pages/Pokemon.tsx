@@ -120,7 +120,7 @@ const Pokemon = () => {
             }
           </div>
           <div className="w-full text-center pt-3 mb-3">
-            <span className="font-bold text-3xl">{pokemon.data.name.toUpperCase()} #{pokemon.data.id}</span>
+            <span className="font-bold text-3xl">{pokemon.data.name.toUpperCase()} #{pokemon.data.id.toString().padStart(3, '0')}</span>
           </div>
           <div className="w-full flex flex-col items-center md:flex-row justify-center gap-2 lg:gap-20">
             <div className="flex flex-col shrink-0">
