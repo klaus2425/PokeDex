@@ -1,6 +1,5 @@
 import ReactSelect, { StylesConfig } from "react-select";
-import Navbar from "../Components/Navbar";
-import AllPokemon from "../Components/AllPokemon";
+  import AllPokemon from "../Components/AllPokemon";
 import { useState } from "react";
 
 type CustomStyle = StylesConfig<{ value: string; label: string }, false>;
@@ -33,6 +32,7 @@ const Home = () => {
   const handleSearch = () => {
     setSearchKey(inputValue);
   }
+
 
   return (
     <div className="flex flex-col gap-4 items-center">
