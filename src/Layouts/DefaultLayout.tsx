@@ -13,7 +13,7 @@ const DefaultLayout = () => {
     return pokemon;
   }
 
-  const pokemon = useQuery({
+  useQuery({
     queryKey: ['all-pokemon-data'],
     queryFn: fetchData,
   })
