@@ -1,17 +1,32 @@
 import { createBrowserRouter } from "react-router-dom";
-import { lazy } from "react";
-import NotFound from "./Pages/NotFound";
+import { Suspense, lazy } from "react";
 
-const Home = lazy(() => import("./Pages/Home"))
+const Home = lazy(() => import("./Pages/Home"));
+const NotFound = lazy(() => import("./Pages/NotFound"));
+const Pokemon = lazy(() => import("./Pages/Pokemon"));
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
+    element:
+      <Suspense>
+        <Home />
+      </Suspense>
+  },
+  {
+    path: `/pokemon/:name/:id`,
+    element:
+      <Suspense>
+        <Pokemon />
+      </Suspense>,
   },
   {
     path: '*',
-    element: <NotFound />
-}
+    element:
+      <Suspense>
+        <NotFound />
+      </Suspense>
+  }
 ])
 
 export default router;

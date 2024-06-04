@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 
 type Pokemon = {
   name: string
@@ -20,6 +21,11 @@ const AllPokemon = ({ searchKey, sortType, order }: AllPokemonProps) => {
     return pokemon;
   }
   const [max, setMax] = useState(19);
+  const navigate = useNavigate();
+
+  const handleNavigate = (name: string, id: string) => {
+    navigate(`/pokemon/${name}/${id}`);
+  }
 
   const { data, isLoading } = useQuery({
     queryKey: ['all-pokemon-data'],
@@ -39,9 +45,12 @@ const AllPokemon = ({ searchKey, sortType, order }: AllPokemonProps) => {
                 )
                   .map((pokemon: Pokemon, index: number) => {
                     if (index <= max) {
+                      const id = pokemon.url.split('/').slice(-2, -1)[0];
                       return (
-                        <div className="group border-4 border-black flex flex-col relative h-64 bg-gray-100 rounded-md items-center justify-between cursor-pointer transition duration-200 hover:bg-slate-400">
-                          <span className="mt-1 ml-1 rounded-2xl px-1 bg-red-500 font-bold self-start text-white border-2 border-black">No. {pokemon.url.split('/').slice(-2, -1)[0]}</span>
+                        <div onClick={() => handleNavigate(pokemon.name, id)}
+                          className="group border-4 border-black flex flex-col relative h-64 bg-gray-100 rounded-md items-center 
+                          justify-between cursor-pointer transition duration-200 hover:bg-slate-400">
+                          <span className="mt-1 ml-1 rounded-2xl px-1 bg-red-500 font-bold self-start text-white border-2 border-black">No. {id}</span>
                           <img className="w-40 h-40 object-cover transition-transform duration-300 transform scale-100 group-hover:scale-125 absolute top-7 left-auto" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/').slice(-2, -1)[0]}.png`} alt={pokemon.name} />
                           <div className="w-52 text-center bg-red-500 p-2 border-t-4 border-black">
                             <span className="font-bold text-white uppercase">{pokemon.name}</span>
