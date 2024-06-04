@@ -2,9 +2,9 @@
 const Navbar = () => {
   return (
     <div className="w-full flex flex-col items-center ">
-      <div className="w-full flex items-center border-b-[12px] border-b-black gap-2 bg-red-500 h-fit p-3 px-3">
+      <div className="w-full flex items-center border-b-[12px] border-b-black bg-red-500 h-fit p-3 px-3">
         <img className="w-14" src={'/pokeball.svg'} alt="" />
-        <div className="font-bold hidden md:block text-white text-3xl">Pokédex</div>
+        <img className="w-40 hidden md:block" src={`/PokeDex.svg`} alt="" />
 
       </div>
       <div className="h-20 w-20 -mt-12 bg-black 
