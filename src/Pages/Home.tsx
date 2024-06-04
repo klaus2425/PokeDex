@@ -49,7 +49,7 @@ const Home = () => {
         />
         <button onClick={handleSearch}><img src={'/pokesearch.svg'} alt="search-icon" /></button> 
       </div>
-      <div className="flex justify-center items-center gap-3">
+      <div className="flex  flex-col md:flex-row justify-center items-center gap-3">
         <div className="font-bold">Sort by: </div>
         <div>
           <ReactSelect
