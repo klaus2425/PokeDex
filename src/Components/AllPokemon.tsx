@@ -71,7 +71,7 @@ const AllPokemon = ({ searchKey, sortType, order }: AllPokemonProps) => {
           );
         })}
       </div>
-      {max < results?.length && (
+      {max < filteredResults?.length && (
         <button onClick={() => setMax(max + 20)} className="rounded-3xl bg-black text-white p-2">
           Load More
         </button>
