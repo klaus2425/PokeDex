@@ -4,7 +4,6 @@ import Progressbar from "../Components/Progressbar";
 import GetWeakness from "../Components/GetWeakness";
 import Loading from "../Components/Loading";
 import { useStateContext } from "../Context/ContextProvider";
-import { useEffect } from "react";
 import AbilityDescription from "../Components/AbilityDescription";
 
 
@@ -56,6 +55,7 @@ const Pokemon = () => {
     queryFn: fetchPokemon,
   })
 
+  console.log(pokemon.data);
 
   const pokemon_description = useQuery({
     queryKey: [`${name}-description`],
@@ -134,7 +134,7 @@ const Pokemon = () => {
                 {
                   pokemon.data.stats.map((stat: Stat, index: number) => (
                     <div key={index}>
-                      <span className="text-white p-2 font-bold">{stat.stat.name.toUpperCase()}</span> <Progressbar value={pokemon.data.stats[index].base_stat} max={255} />
+                      <span className="text-white p-2 font-bold">{stat.stat.name.toUpperCase().replace('-', ' ')}</span> <Progressbar value={pokemon.data.stats[index].base_stat} max={255} />
                     </div>
                   ))
                 }
@@ -164,7 +164,7 @@ const Pokemon = () => {
                           </svg>
                         </div>
 
-                        {ability.ability.name.toUpperCase()}
+                        {ability.ability.name.toUpperCase().replace('-', ' ')}
                       </span>
                     )
                     )
