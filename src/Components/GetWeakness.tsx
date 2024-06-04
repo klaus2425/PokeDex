@@ -38,7 +38,6 @@ const GetWeakness = ({ types }: Props) => {
       }
     }),
     combine: (results) => {
-      console.log(results);
       return {
         data: results.map((result) => result.data?.damage_relations.double_damage_from),
         pending: results.some((result) => result.isPending)
@@ -59,7 +58,6 @@ const GetWeakness = ({ types }: Props) => {
     return `bg-${type}`;
   }
 
-  console.log(weaknessTypes);
   return (
     <div className="flex gap-2 flex-wrap">
       {weaknessTypes.map((weakness, index) => (
