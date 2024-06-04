@@ -36,7 +36,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-4 items-center">
-      <Navbar />
       <div className="text-4xl mt-4 font-bold">Pokémon</div>
       <div className="w-3/12 min-w-72 flex items-center gap-1">
         <input onChange={(ev) => setInputValue(ev.currentTarget.value)} className="rounded px-1 p-0.5 w-full border-2 outline-gray-500" 

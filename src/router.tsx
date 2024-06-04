@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import DefaultLayout from "./Layouts/DefaultLayout";
 
 const Home = lazy(() => import("./Pages/Home"));
 const NotFound = lazy(() => import("./Pages/NotFound"));
@@ -10,15 +11,18 @@ const router = createBrowserRouter([
     path: '/',
     element:
       <Suspense>
-        <Home />
-      </Suspense>
-  },
-  {
-    path: `/pokemon/:name/:id`,
-    element:
-      <Suspense>
-        <Pokemon />
+        <DefaultLayout />
       </Suspense>,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: `/pokemon/:name/:id`,
+        element: <Pokemon />
+      },
+    ]
   },
   {
     path: '*',
