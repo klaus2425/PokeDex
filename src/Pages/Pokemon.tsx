@@ -95,26 +95,25 @@ const Pokemon = () => {
 
   return pokemon.data && pokemon_description.data ? (
     <div className="flex mt-6 flex-col gap-3">
-
       <div className="w-full flex flex-col items-center">
-        <button className="flex bg-red-500 p-3 rounded-lg m-2">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 8L3.29289 8.70711L2.58579 8L3.29289 7.29289L4 8ZM9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18L9 20ZM8.29289 13.7071L3.29289 8.70711L4.70711 7.29289L9.70711 12.2929L8.29289 13.7071ZM3.29289 7.29289L8.29289 2.29289L9.70711 3.70711L4.70711 8.70711L3.29289 7.29289ZM4 7L14.5 7L14.5 9L4 9L4 7ZM14.5 20L9 20L9 18L14.5 18L14.5 20ZM21 13.5C21 17.0898 18.0898 20 14.5 20L14.5 18C16.9853 18 19 15.9853 19 13.5L21 13.5ZM14.5 7C18.0898 7 21 9.91015 21 13.5L19 13.5C19 11.0147 16.9853 9 14.5 9L14.5 7Z" fill="white" />
-          </svg>
 
-          <span className="font-medium text-white">Return</span>
-        </button>
         <div className="bg-gray-200 p-2 px-3 flex flex-col gap-3 rounded-md w-4/6 min-w-72 max-w-4xl">
           <div className="flex justify-between">
             {
               index > 0 ?
                 <button onClick={onPreviousClick} className="bg-red-500 p-2 font-medium w-32 text-white -mt-2 -ml-3 rounded-tl-md rounded-br-md text-2xl">Previous</button> :
-                <div></div>
+                <div className="w-32"></div>
             }
+            <button onClick={() => navigate(`/`)} className="flex bg-red-500 p-3 rounded-lg m-2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 8L3.29289 8.70711L2.58579 8L3.29289 7.29289L4 8ZM9 20C8.44772 20 8 19.5523 8 19C8 18.4477 8.44772 18 9 18L9 20ZM8.29289 13.7071L3.29289 8.70711L4.70711 7.29289L9.70711 12.2929L8.29289 13.7071ZM3.29289 7.29289L8.29289 2.29289L9.70711 3.70711L4.70711 8.70711L3.29289 7.29289ZM4 7L14.5 7L14.5 9L4 9L4 7ZM14.5 20L9 20L9 18L14.5 18L14.5 20ZM21 13.5C21 17.0898 18.0898 20 14.5 20L14.5 18C16.9853 18 19 15.9853 19 13.5L21 13.5ZM14.5 7C18.0898 7 21 9.91015 21 13.5L19 13.5C19 11.0147 16.9853 9 14.5 9L14.5 7Z" fill="white" />
+              </svg>
+              <span className="font-medium text-white">Return</span>
+            </button>
             {
               index + 1 < results.length ?
                 <button onClick={onNextClick} className="bg-red-500 p-2 font-medium w-32 text-white -mt-2 -mr-3 rounded-tr-md rounded-bl-md text-2xl">Next</button> :
-                <div></div>
+                <div className="w-32"></div>
             }
           </div>
           <div className="w-full text-center pt-3 mb-3">
