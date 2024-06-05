@@ -1,4 +1,5 @@
 import { useQueries } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 type Props = {
   types: {
@@ -8,6 +9,7 @@ type Props = {
       url: string;
     };
   }[];
+  updateBattleData: (data: string[]) => void
 };
 
 type PokemonType = {
@@ -22,7 +24,8 @@ type objType = {
   url: string;
 }
 
-const GetWeakness = ({ types }: Props) => {
+const GetWeakness = ({ types, updateBattleData }: Props) => {
+  const [weaknessTypes, setWeaknessTypes] = useState<string[]>([]);
 
   const fetchWeakness = async (url: string) => {
     const response = await fetch(url);
@@ -44,15 +47,23 @@ const GetWeakness = ({ types }: Props) => {
       }
     }
   })
-  const flattenedArray = pokemon_weakness?.data?.reduce((acc, curr) => {
-    if (Array.isArray(curr)) {
-      return [...acc, ...curr];
-    } else {
-      return acc;
-    }
-  }, []);
 
-  const weaknessTypes: string[] = flattenedArray ? Array.from(new Set(flattenedArray.map((obj: objType) => obj.name))) : [];
+  useEffect(() => {
+    const flattenedArray = pokemon_weakness?.data?.reduce((acc, curr) => {
+      if (Array.isArray(curr)) {
+        return [...acc, ...curr];
+      } else {
+        return acc;
+      }
+    }, []);
+
+    const newWeaknessTypes: string[] = flattenedArray ? Array.from(new Set(flattenedArray.map((obj: objType) => obj.name))) : [];
+    
+    if (JSON.stringify(newWeaknessTypes) !== JSON.stringify(weaknessTypes)) {
+      setWeaknessTypes(newWeaknessTypes);
+      updateBattleData(newWeaknessTypes);
+    }
+  }, [pokemon_weakness?.data]);
 
   const getColor = (type: string) => {
     return `bg-${type}`;
@@ -64,8 +75,7 @@ const GetWeakness = ({ types }: Props) => {
         <span className={`${getColor(weakness)} text-center font-medium p-1 min-w-14 uppercase rounded-full border-2 border-black`} key={index}>{weakness}</span>
       ))}
     </div>
-
   )
 }
 
-export default GetWeakness
+export default GetWeakness;
